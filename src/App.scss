@@ -13,7 +13,7 @@ $primary-color: #ffd700;
 @font-face {
   font-family: 'La Belle Aurore';
   src: url('./assets/fonts/LaBelleAurore.woff2') format('woff2'),
-    url('./assets/fonts/LaBelleAurore.woff') format('woff');
+  url('./assets/fonts/LaBelleAurore.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -21,7 +21,7 @@ $primary-color: #ffd700;
 @font-face {
   font-family: 'Coolvetica';
   src: url('./assets/fonts/CoolveticaRg-Regular.woff2') format('woff2'),
-    url('./assets/fonts/CoolveticaRg-Regular.woff') format('woff');
+  url('./assets/fonts/CoolveticaRg-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -29,6 +29,10 @@ $primary-color: #ffd700;
 input,
 textarea {
   font-family: 'Helvetica Neue', sans-serif;
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .loader-hidden {
@@ -47,4 +51,9 @@ textarea {
   height: 50px;
   animation: fadeOut 1s 1s;
   animation-fill-mode: forwards;
+
+  @media screen and (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
 }

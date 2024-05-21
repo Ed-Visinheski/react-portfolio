@@ -1,49 +1,42 @@
-
-import { useEffect, useState } from 'react'
-import Loader from 'react-loaders'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { useRef } from 'react'
-import emailjs from '@emailjs/browser'
-import AnimatedLetters from '../AnimatedLetters'
-import './index.scss'
-import "leaflet/dist/leaflet.css";
+import { useEffect, useState, useRef } from 'react';
+import Loader from 'react-loaders';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import emailjs from '@emailjs/browser';
+import AnimatedLetters from '../AnimatedLetters';
+import 'leaflet/dist/leaflet.css';
+import './index.scss';
 import L from 'leaflet';
 
+// Configure Leaflet's default icon
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-    iconUrl: require('leaflet/dist/images/marker-icon.png'),
-    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-
-
 const Contact = () => {
-  const [letterClass, setLetterClass] = useState('text-animate')
-  const form = useRef()
+  const [letterClass, setLetterClass] = useState('text-animate');
+  const form = useRef();
 
   useEffect(() => {
     setTimeout(() => {
-      return setLetterClass('text-animate-hover')
-    }, 3000)
-  }, [])
+      setLetterClass('text-animate-hover');
+    }, 3000);
+  }, []);
 
   const sendEmail = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    emailjs
-      .sendForm('service_xuj3p3n', 'template_vilf1cj', form.current, 'Hfp-2WJOUVAhBnCVJ')
-      .then(
-        () => {
-          alert('Message successfully sent!')
-          window.location.reload(false)
-        },
-        () => {
-          alert('Failed to send the message, please try again')
-        }
-      )
-  }
+    emailjs.sendForm('service_xuj3p3n', 'template_vilf1cj', form.current, 'Hfp-2WJOUVAhBnCVJ')
+      .then(() => {
+        alert('Message successfully sent!');
+        window.location.reload(false);
+      }, () => {
+        alert('Failed to send the message, please try again');
+      });
+  };
 
   return (
     <>
@@ -59,7 +52,7 @@ const Contact = () => {
           <p>
             I am interested in placement or internship opportunities - I am especially keen on working with a team of hardworking and talented
             individuals to learn and grow from. However, if you have any other requests or
-            questions, don't hesitate to contact me using below form either.
+            questions, don't hesitate to contact me using the form below.
           </p>
           <div className="contact-form">
             <form ref={form} onSubmit={sendEmail}>
@@ -68,10 +61,10 @@ const Contact = () => {
                   <input placeholder="Name" type="text" name="name" required />
                 </li>
                 <li className="half">
-                  <input placeholder="Email" type="email" name="email" required/>
+                  <input placeholder="Email" type="email" name="email" required />
                 </li>
                 <li>
-                  <input placeholder="Subject" type="text" name="subject" required/>
+                  <input placeholder="Subject" type="text" name="subject" required />
                 </li>
                 <li>
                   <textarea placeholder="Message" name="message" required></textarea>
@@ -88,7 +81,8 @@ const Contact = () => {
           <br />
           London,
           <br />
-          City, University of London <br />
+          City, University of London
+          <br />
           <br />
           <span>eduardovisinheski@gmail.com</span>
         </div>
@@ -103,7 +97,7 @@ const Contact = () => {
       </div>
       <Loader type="pacman" />
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
